@@ -12,7 +12,20 @@ foreach($_POST['id'] as $key => $id){
     }else{
 
         $row=$db->find($id);
-        $row['sh']=($id==$_POST['sh'])?1:0;
+
+        switch($table){
+            case 'title':
+                $row['sh']=($id==$_POST['sh'])?1:0;
+            break;
+            case 'ad':
+                $row['sh']=(in_array($id,$_POST['sh']))?1:0;
+            break;
+            case 'mvim':
+                
+            break;
+            
+        }
+
         $row['text']=$_POST['text'][$key];
 
         $db->save($row);
