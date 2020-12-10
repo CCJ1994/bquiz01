@@ -5,19 +5,19 @@
         <table width="100%">
             <tbody>
                 <tr class="yel">
-                    <td width="70%">動態廣告文字</td>
-                    <td width="10%">顯示</td>
+                    <td width="45%">帳號</td>
+                    <td width="45%">密碼</td>
                     <td width="10%">刪除</td>
 
                 </tr>
                 <?php
-                $rows=$Ad->all();
+                $rows=$Admin->all();
 
                 foreach($rows as $row){
                 ?>
                 <tr>
-                    <td><input type="text" name="text[]" value="<?=$row['text'];?>" style="width:95%;"></td>
-                    <td><input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>></td>
+                    <td><input type="text" name="acc[]" value="<?=$row['acc'];?>" style="width:95%;"></td>
+                    <td><input type="password" name="pw[]" value="<?=$row['pw'];?>" style="width:95%;"></td>
                     <td><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
                     <input type="hidden" name="id[]" value="<?=$row['id'];?>">
                 </tr>

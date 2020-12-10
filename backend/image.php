@@ -5,20 +5,21 @@
         <table width="100%">
             <tbody>
                 <tr class="yel">
-                    <td width="70%">動態廣告文字</td>
+                    <td width="70%">校園映像資料圖片</td>
                     <td width="10%">顯示</td>
                     <td width="10%">刪除</td>
-
+                    <td></td>
                 </tr>
                 <?php
-                $rows=$Ad->all();
+                $rows=$Image->all();
 
                 foreach($rows as $row){
                 ?>
                 <tr>
-                    <td><input type="text" name="text[]" value="<?=$row['text'];?>" style="width:95%;"></td>
-                    <td><input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>></td>
-                    <td><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
+                    <td class="cent"><img src="./img/<?=$row['img'];?>" style="width:100px;height:68px"></td>
+                    <td ><input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>></td>
+                    <td ><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
+                    <td><input type="button" value="更新圖片" onclick="op('#cover','#cvr','./modal/upload.php?table=<?=$do;?>&id=<?=$row['id'];?>')"></td>
                     <input type="hidden" name="id[]" value="<?=$row['id'];?>">
                 </tr>
                 <?php
@@ -28,6 +29,23 @@
         </table>
         <table style="margin-top:40px; width:70%;">
             <tbody>
+            <tr>
+            <td colspan="4" class="cent">
+            
+<?php
+if(!empty(count($rows)>3)){
+?>
+<a href="" style=""><</a>
+    <a href="" style="">1</a>
+    <a href="">></a>
+<?php
+}
+?>
+            
+
+            
+            </td>
+            </tr>
                 <tr>
                     <input type="hidden" name="table" value="<?=$do;?>">
                     <td width="200px"><input type="button"

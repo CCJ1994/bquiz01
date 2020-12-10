@@ -5,20 +5,21 @@
         <table width="100%">
             <tbody>
                 <tr class="yel">
-                    <td width="70%">動態廣告文字</td>
+                    <td width="70%">動畫圖片</td>
                     <td width="10%">顯示</td>
                     <td width="10%">刪除</td>
-
+                    <td></td>
                 </tr>
                 <?php
-                $rows=$Ad->all();
+                $rows=$Mvim->all();
 
                 foreach($rows as $row){
                 ?>
                 <tr>
-                    <td><input type="text" name="text[]" value="<?=$row['text'];?>" style="width:95%;"></td>
-                    <td><input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>></td>
-                    <td><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
+                    <td class="cent"><img src="./img/<?=$row['img'];?>" style="width:100px;height:80px"></td>
+                    <td ><input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?>></td>
+                    <td ><input type="checkbox" name="del[]" value="<?=$row['id'];?>"></td>
+                    <td><input type="button" value="更新動畫" onclick="op('#cover','#cvr','./modal/upload.php?table=<?=$do;?>&id=<?=$row['id'];?>')"></td>
                     <input type="hidden" name="id[]" value="<?=$row['id'];?>">
                 </tr>
                 <?php

@@ -15,12 +15,23 @@ if(!empty($_POST['text'])){
     $data['text']=$_POST['text'];
 }
 
-if($table!='title'){
 
+switch($table){
+    case "title":
+        $data['sh']=0;
+break;
+    case "admin":
+        $data['acc']=$_POST['acc'];
+        $data['pw']=$_POST['pw'];
+    break;
+    case "menu":
+        $data['text']=$_POST['text'];
+        $data['href']=$_POST['href'];
+        $data['sh']=1;
+
+break;
+default:
     $data['sh']=1;
-}else{
-    $data['sh']=0;
-
 }
 
 

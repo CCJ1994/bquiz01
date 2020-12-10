@@ -11,6 +11,7 @@ if(!empty($_FILES['img']['tmp_name'])){
     $row['img']=$_FILES['img']['name'];
 }
 
+
 $db->save($row);
 
 
