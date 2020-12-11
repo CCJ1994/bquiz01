@@ -1,4 +1,6 @@
+<?php
 
+?>
 <div style="width:99%; height:87%; margin:auto; overflow:auto; border:#666 1px solid;">
     <p class="t cent botli"><?=$tstr[$do];?></p>
     <form method="post" action="./api/edit.php">
@@ -11,7 +13,12 @@
 
                 </tr>
                 <?php
-                $rows=$News->all();
+                $all=$News->count();
+                $div=5;
+                $pages=ceil($all/$div);
+                $now=(isset($_GET['p']))?$_GET['p']:1;
+                $start=($now-1)*$div;
+                $rows=$News->all("limit $start,$div");
 
                 foreach($rows as $row){
                 ?>
@@ -26,6 +33,37 @@
                 ?>
             </tbody>
         </table>
+        <div class="cent">
+        <?php
+if(($now-1)>0){
+    ?>
+        <a class="bl" style="font-size:30px;" href="?do=news&p=<?=$now-1;?>">&lt;&nbsp;</a>
+<?php
+}
+?>
+        <?php
+        for($i=1;$i<=$pages;$i++){
+            if($i==$now){
+                echo "<a href='?do=news&p=$i' style='font-size:36px;'>";
+                echo $i ;
+                echo "</a>";
+
+            }else{
+
+                echo "<a href='?do=news&p=$i' style='font-size:30px;'>";
+                echo $i ;
+                echo "</a>";
+            }
+        }
+        ?>
+<?php
+if($now+1<=$pages){
+?>
+<a class="bl" style="font-size:30px;" href="?do=news&p=<?=$now+1;?>">&nbsp;&gt;</a>
+<?php
+}
+?>
+        </div>
         <table style="margin-top:40px; width:70%;">
             <tbody>
                 <tr>

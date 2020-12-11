@@ -11,7 +11,12 @@
                     <td></td>
                 </tr>
                 <?php
-                $rows=$Image->all();
+                $all=$Image->count();
+                $div=3;
+                $pages=ceil($all/$div);
+                $now=(isset($_GET['p']))?$_GET['p']:1;
+                $start=($now-1)*$div;
+                $rows=$Image->all("","limit $start,$div");
 
                 foreach($rows as $row){
                 ?>
@@ -27,25 +32,40 @@
                 ?>
             </tbody>
         </table>
-        <table style="margin-top:40px; width:70%;">
-            <tbody>
-            <tr>
-            <td colspan="4" class="cent">
-            
-<?php
-if(!empty(count($rows)>3)){
-?>
-<a href="" style=""><</a>
-    <a href="" style="">1</a>
-    <a href="">></a>
+        <div class="cent">
+        
+        <?php
+if(($now-1)>0){
+    ?>
+        <a class="bl" style="font-size:30px;" href="?do=image&p=<?=$now-1;?>">&lt;&nbsp;</a>
 <?php
 }
 ?>
-            
+        <?php
+        for($i=1;$i<=$pages;$i++){
+            if($i==$now){
+                echo "<a href='?do=image&p=$i' style='font-size:36px;'>";
+                echo $i ;
+                echo "</a>";
 
-            
-            </td>
-            </tr>
+            }else{
+
+                echo "<a href='?do=image&p=$i' style='font-size:30px;'>";
+                echo $i ;
+                echo "</a>";
+            }
+        }
+        ?>
+<?php
+if($now+1<=$pages){
+?>
+<a class="bl" style="font-size:30px;" href="?do=image&p=<?=$now+1;?>">&nbsp;&gt;</a>
+<?php
+}
+?>
+</div>
+        <table style="margin-top:40px; width:70%;">
+            <tbody>
                 <tr>
                     <input type="hidden" name="table" value="<?=$do;?>">
                     <td width="200px"><input type="button"
