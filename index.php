@@ -54,7 +54,7 @@
           onclick="lo('?do=admin')">管理登入</button>
         <div style="width:89%; height:480px;" class="dbor">
           <span class="t botli">校園映象區</span>
-					<div class="cent" onclick="pp(1)" style="margin:3px;">
+					<div class="cent" onclick="pp(1)" style="margin:25px 5px 5px 5px;">
 						<img src="./icon/up.jpg">
 					</div>
           
@@ -67,7 +67,7 @@
 							?>
 	
           
-					<div class="cent" onclick="pp(2)" style="margin:3px;">
+					<div class="cent" onclick="pp(2)" style="margin:5px;">
 					<img src="./icon/dn.jpg">
 					</div>
           <script>
@@ -77,7 +77,7 @@
             if (x == 1 && nowpage - 1 >= 0) {
               nowpage--;
             }
-            if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+            if (x == 2 && (nowpage + 1) <= num - 3) {
               nowpage++;
             }
             $(".im").hide()
