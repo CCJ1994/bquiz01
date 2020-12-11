@@ -11,17 +11,17 @@
     </div>
   </div>
   <script>
-  			<?php
+
+				var lin = new Array();
+				<?php
 					$str=[];
 					$mvims=$Mvim->all(['sh'=>1]);
 					foreach($mvims as $key=>$mvim){
-						$str[]="'img/{$mvim['img']}'";
+						echo "lin.push('img/{$mvim['img']}')\n";
 					}
-
 				?>
-
-				var lin = [<?=implode(',',$str);?>];
 				var now = 0;
+				
 				ww();
 
 				if (lin.length > 1) {
