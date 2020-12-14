@@ -31,6 +31,31 @@
         <div id="menuput" class="dbor">
           <!--主選單放此-->
           <span class="t botli">主選單區</span>
+          <?php
+							$mainmu=$Menu->all(['sh'=>1,'parent'=>0]);
+							foreach($mainmu as $main){
+						?>
+
+          <div class="mainmu">
+            <a style="color:#000; font-size:13px; text-decoration:none;"
+              href="<?=$main['href'];?>"><?=$main['text'];?></a>
+            <div class="mw" style="display:none;position:relative;top:-5px;z-index:98;width:150px;margin-left:100px;">
+              <?php 
+									if($Menu->count(['parent'=>$main['id']])>0){
+										$subs=$Menu->all(['parent'=>$main['id']]);
+										foreach($subs as $sub){
+
+									?>
+              <a style="color:#000; font-size:13px; text-decoration:none;" href="<?=$sub['href'];?>">
+                <div class="mainmu2"><?=$sub['text'];?></div>
+              </a>
+              <?php
+										}
+									}
+									?>
+            </div>
+          </div>
+          <?php } ;?>
         </div>
         <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
           <span class="t">進站總人數 : <?=$Total->find(1)['total'];?></span>
@@ -54,24 +79,26 @@
           onclick="lo('?do=login')">管理登入</button>
         <div style="width:89%; height:480px;" class="dbor">
           <span class="t botli">校園映象區</span>
-					<div class="cent" onclick="pp(1)" style="margin:25px 5px 5px 5px;">
-						<img src="./icon/up.jpg">
-					</div>
-          
-            <?php
+          <div class="cent" onclick="pp(1)" style="margin:25px 5px 5px 5px;">
+            <img src="./icon/up.jpg">
+          </div>
+
+          <?php
 							$imgs=$Image->all(['sh'=>1]);
 							foreach($imgs as $key => $img){
 
 							echo "<div class='cent im' id='ssaa$key'><img src='./img/{$img['img']}' style='width:150px;height:103px;margin:3px;'></div>";
 						}
 							?>
-	
-          
-					<div class="cent" onclick="pp(2)" style="margin:5px;">
-					<img src="./icon/dn.jpg">
-					</div>
+
+
+          <div class="cent" onclick="pp(2)" style="margin:5px;">
+            <img src="./icon/dn.jpg">
+          </div>
           <script>
-          var nowpage = 0,num = <?=$Image->count(['sh'=>1]);?>;
+          var nowpage = 0,
+            num = <?=$Image->count(['sh'=>1]);?>;
+
           function pp(x) {
             var s, t;
             if (x == 1 && nowpage - 1 >= 0) {
