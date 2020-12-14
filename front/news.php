@@ -5,8 +5,7 @@
                     ?>
     <div style="height:32px; display:block;"></div>
     <!--正中央-->
-    更多最新消息顯示區
-    <hr>
+    <span class="t botli">更多最新消息顯示區</span>
 <?php
 $all=$News->count(['sh'=>1]);
 $div=5;
@@ -16,11 +15,11 @@ $start=($now-1)*$div;
 ?>
 
 
-    <ol start="<?=$start+1;?>" class="sswww">
+    <ol start="<?=$start+1;?>">
     <?php
 		$rows=$News->all(['sh'=>1],"limit $start,$div");
 		foreach($rows as $key=>$row){
-			echo "<li style='margin:3px;'>".mb_substr($row['text'],0,25);
+			echo "<li class='sswww' style='margin:3px;'>".mb_substr($row['text'],0,25);
 			echo "<div class='all' style='display:none;'>{$row['text']}</div>";
 			echo "</li>";
 		}
@@ -62,9 +61,9 @@ if($now+1<=$pages){
     style="position: absolute; width: 350px; min-height: 100px; word-break:break-all; text-align:justify;  background-color: rgb(255, 255, 204); top: 50px; left: 400px; z-index: 99; display: none; padding: 5px; border: 3px double rgb(255, 153, 0); background-position: initial initial; background-repeat: initial initial;">
 </div>
 <script>
-$(".sswww li").hover(
+$(".sswww").hover(
     function() {
-    $("#alt").html("" + $(this).children(".all").html() + "").css({
+    $("#alt").html("<pre>" + $(this).children(".all").html() + "</pre>").css({
         "top": $(this).offset().top - 50
     })
     $("#alt").show()
