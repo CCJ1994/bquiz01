@@ -31,6 +31,8 @@ $uploadimg=[
 
 ];
 
+
+
 class DB{
 
     protected $table;
@@ -160,4 +162,12 @@ $News=new DB("news");
 $Admin=new DB("admin");
 $Menu=new DB("menu");
 
+
+if(empty($_SESSION['total'])){
+    $total=$Total->find(1);
+    $total['total']++;
+    // $total['total']=$total['total']+1;
+    $Total->save($total);   
+    $_SESSION['total']= $total['total'];
+}
 ?>
