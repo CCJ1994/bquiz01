@@ -14,6 +14,9 @@
                 $rows=$Admin->all();
 
                 foreach($rows as $row){
+                    if($row['acc']!='admin'){
+
+                    
                 ?>
                 <tr>
                     <td><input type="text" name="acc[]" value="<?=$row['acc'];?>" style="width:95%;"></td>
@@ -23,6 +26,7 @@
                 </tr>
                 <?php
                     }
+                }
                 ?>
             </tbody>
         </table>
