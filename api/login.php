@@ -1,6 +1,6 @@
 <?php 
 include_once "../base.php";
-$_SESSION['acc']=$_POST['acc'];
+
 $acc=$_POST['acc'];
 $pw=$_POST['pw'];
 
