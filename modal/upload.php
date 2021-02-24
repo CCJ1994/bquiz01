@@ -1,7 +1,7 @@
 <?php 
 include_once "../base.php";
 ?>
-<h2 class="cent"><?=$addstr[$_GET['do']];?></h2>
+<h2 class="cent">更換圖片</h2>
 <hr>
 <form action="api/add.php" method="post" enctype="multipart/form-data">
   <table style="margin:auto;">

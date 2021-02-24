@@ -26,7 +26,9 @@ include_once "base.php";
   <iframe style="display:none;" name="back" id="back"></iframe>
   <div id="main">
     <a title="" href="index.php">
-      <div class="ti" style="background:url('use/'); background-size:cover;"></div>
+      <div class="ti" style=" background-size:cover;">
+        <img src="./img/<?=$Title->find(['sh'=>1])['img'];?>" alt="">
+      </div>
       <!--標題-->
     </a>
     <div id="ms">
@@ -47,7 +49,7 @@ include_once "base.php";
       if(file_exists($file)){
         include_once $file;
       }else{
-        include_once "../front/main.php";
+        include_once "./front/main.php";
       }
 
       ?>
