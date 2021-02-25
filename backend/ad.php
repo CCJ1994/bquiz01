@@ -12,7 +12,7 @@
         $rows=$Ad->all();
         foreach ($rows as $key => $row) { ?>
           <tr class="">
-          <td><input style="width:600px;" type="text" name="text[]" value="<?=$row['text'];?>"></td>
+          <td><textarea style="width:600px;" name="text[]"><?=$row['text'];?></textarea></td>
           <td><input type="checkbox" name="sh[]" value="<?=$row['id'];?>" <?=($row['sh']==1)?'checked':'';?> ></td>
           <td><input type="checkbox" name="del[]" value="<?=$row['id'];?>" id=""></td>
           <input type="hidden" name="id[]" value="<?=$row['id'];?>" id="">

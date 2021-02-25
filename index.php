@@ -36,6 +36,23 @@ include_once "base.php";
         <div id="menuput" class="dbor">
           <!--主選單放此-->
           <span class="t botli">主選單區</span>
+          <?php $mainmu=$Menu->all(['sh'=>1,'parent'=>0]) ;
+          foreach ($mainmu as $key => $main) { ?>
+            <div class="mainmu">
+              <a href="<?=$main['href'];?>"><?=$main['text'];?></a>
+              <div class="mw" style="display:none;">
+              <?php if($Menu->count(['parent'=>$main['id']])>0){
+                $subs=$Menu->all(['parent'=>$main['id']]);
+                foreach ($subs as $key => $sub) { ?>
+                  <a href="<?=$sub['href'];?>">
+                    <div class="mainmu2"><?=$sub['text']?></div>
+                  </a>      
+            <?php }
+              } ?>
+              </div>
+            </div>
+          
+          <?php } ?>
         </div>
         <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
           <span class="t">進站總人數 :
