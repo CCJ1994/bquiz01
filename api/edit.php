@@ -8,14 +8,44 @@ foreach ($_POST['id'] as $key => $id) {
     $db->del($id);
   }else{
     $row=$db->find($id);
+
+    if(!empty($_POST['text'])){
+    $row['text']=$_POST['text'][$key];
+    }
     switch ($_POST['table']) {
       case 'title':
         $row['sh']=($id==$_POST['sh'])?1:0;
         break;
+      case 'ad':
+        $row['sh']=(in_array($id,$_POST['sh']))?1:0;
+        break;
+      case 'mvim':
+        $row['sh']=(in_array($id,$_POST['sh']))?1:0;
+        break;
+      case 'image':
+        $row['sh']=(in_array($id,$_POST['sh']))?1:0;
+        break;
+      case 'news':
+        $row['sh']=(in_array($id,$_POST['sh']))?1:0;
+        break;
+      case 'bottom':
+        $row['bottom']=$_POST['bottom'];
+        break;
+      case 'total':
+        $row['total']=$_POST['total'];
+        break;
+      case 'admin':
+        $row['acc']=$_POST['acc'][$key];
+        $row['pw']=$_POST['pw'][$key];
+        break;
+      case 'menu':
+        $row['href']=$_POST['href'][$key];
+        $row['sh']=(in_array($id,$_POST['sh']))?1:0;
+        break;
+
 
     
     }
-    $row['text']=$_POST['text'][$key];
     $db->save($row);
   }
 }

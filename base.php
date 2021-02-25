@@ -27,9 +27,9 @@ $addstr=[
 ];
 $Title=new DB('title');
 $Ad=new DB('ad');
-$mvim=new DB('mvim');
+$Mvim=new DB('mvim');
 $Image=new DB('image');
-$Total=new DB('toatl');
+$Total=new DB('total');
 $Bottom=new DB('bottom');
 $News=new DB('news');
 $Admin=new DB('admin');
@@ -110,6 +110,7 @@ class DB{
       }else{
         $sql="insert into $this->table (`".implode("`,`",array_keys($arr))."`) values ('".implode("','",$arr)."')";
       }
+      echo $sql;
     return $this->pdo->exec($sql);
   }
   function q($sql){
@@ -119,5 +120,12 @@ class DB{
 }
 function to($url){
   header("location:".$url);
+}
+
+if(empty($_SESSION['total'])){
+  $total=$Total->find(1);
+  $total['total']++;
+  $Total->save($total);
+  $_SESSION['total']=$total['total'];
 }
 ?>

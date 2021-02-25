@@ -3,7 +3,7 @@ include_once "../base.php";
 ?>
 <h2 class="cent">更換圖片</h2>
 <hr>
-<form action="api/add.php" method="post" enctype="multipart/form-data">
+<form action="api/upload.php" method="post" enctype="multipart/form-data">
   <table style="margin:auto;">
     <tr>
       <td>標題圖片:</td>
@@ -15,8 +15,9 @@ include_once "../base.php";
     </tr>
   </table>
   <div class="cent">
+    <input type="hidden" name="id" value="<?=$_GET['id'];?>">
     <input type="hidden" name="table" value="<?=$_GET['do'];?>">
-    <input type="submit" value="新增">
+    <input type="submit" value="修改確定">
     <input type="reset" value="重置">
 
   </div>
