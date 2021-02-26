@@ -18,16 +18,15 @@ include_once "base.php";
 <body>
   <div id="cover" style="display:none; ">
     <div id="coverr">
-      <a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;"
-        onclick="cl('#cover')">X</a>
+      <a style="position:absolute; right:3px; top:4px; cursor:pointer; z-index:9999;" onclick="cl('#cover')">X</a>
       <div id="cvr" style="position:absolute; width:99%; height:100%; margin:auto; z-index:9898;"></div>
     </div>
   </div>
   <iframe style="display:none;" name="back" id="back"></iframe>
   <div id="main">
-  <a title="<?=$Title->find(['sh'=>1])['text'];?>" href="index.php">
+    <a title="<?=$Title->find(['sh'=>1])['text'];?>" href="index.php">
       <div class="ti" style="background-size:cover;">
-      <img src="./img/<?=$Title->find(['sh'=>1])['img'];?>" style="width:100%;">
+        <img src="./img/<?=$Title->find(['sh'=>1])['img'];?>" style="width:100%;">
       </div>
       <!--標題-->
     </a>
@@ -38,25 +37,25 @@ include_once "base.php";
           <span class="t botli">主選單區</span>
           <?php $mainmu=$Menu->all(['sh'=>1,'parent'=>0]) ;
           foreach ($mainmu as $key => $main) { ?>
-            <div class="mainmu">
-              <a href="<?=$main['href'];?>"><?=$main['text'];?></a>
-              <div class="mw" style="display:none;">
+          <div class="mainmu">
+            <a href="<?=$main['href'];?>"><?=$main['text'];?></a>
+            <div class="mw" style="display:none;position:relative;top:-5px;z-index:98;width:150px;margin-left:100px;">
               <?php if($Menu->count(['parent'=>$main['id']])>0){
                 $subs=$Menu->all(['parent'=>$main['id']]);
                 foreach ($subs as $key => $sub) { ?>
-                  <a href="<?=$sub['href'];?>">
-                    <div class="mainmu2"><?=$sub['text']?></div>
-                  </a>      
-            <?php }
+              <a href="<?=$sub['href'];?>">
+                <div class="mainmu2"><?=$sub['text']?></div>
+              </a>
+              <?php }
               } ?>
-              </div>
             </div>
-          
+          </div>
+
           <?php } ?>
         </div>
         <div class="dbor" style="margin:3px; width:95%; height:20%; line-height:100px;">
           <span class="t">進站總人數 :
-          <?=$Total->find(1)['total'];?>
+            <?=$Total->find(1)['total'];?>
           </span>
         </div>
       </div>
@@ -94,11 +93,11 @@ include_once "base.php";
         <?php if(empty($_SESSION['login'])){?>
         <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
           onclick="lo('?do=login')">管理登入</button>
-          <?php }else{?>
-            <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
-              onclick="lo('backend.php')">返回管理</button>
+        <?php }else{?>
+        <button style="width:100%; margin-left:auto; margin-right:auto; margin-top:2px; height:50px;"
+          onclick="lo('backend.php')">返回管理</button>
 
-          <?php }?>
+        <?php }?>
         <div style="width:89%; height:480px;" class="dbor">
           <span class="t botli">校園映象區</span>
           <script>
