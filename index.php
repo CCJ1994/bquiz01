@@ -39,7 +39,7 @@ include_once "base.php";
           foreach ($mainmu as $key => $main) { ?>
           <div class="mainmu">
             <a href="<?=$main['href'];?>"><?=$main['text'];?></a>
-            <div class="mw" style="display:none;position:relative;top:-5px;z-index:98;width:150px;margin-left:100px;">
+            <div class="mw" style="display:none;position:absolute;top:10px;z-index:98;width:150px;margin-left:100px;">
               <?php if($Menu->count(['parent'=>$main['id']])>0){
                 $subs=$Menu->all(['parent'=>$main['id']]);
                 foreach ($subs as $key => $sub) { ?>
@@ -100,16 +100,28 @@ include_once "base.php";
         <?php }?>
         <div style="width:89%; height:480px;" class="dbor">
           <span class="t botli">校園映象區</span>
+          <div class="cent" onclick="pp(1)" style="margin:25px 5px 5px 5px;">
+            <img src="./icon/up.jpg" alt="">
+          </div>
+          <?php 
+            $imgs=$Image->all(['sh'=>1]);
+            foreach($imgs as $key =>$img){
+              echo "<div class='cent im' id='ssaa$key'><img src='./img/{$img['img']}' style='width:150px;height:103px;margin:3px;'></div>";
+            }
+          ?>
+          <div class="cent" onclick="pp(2)" style="margin:25px 5px 5px 5px;">
+            <img src="./icon/dn.jpg" alt="">
+          </div>
           <script>
           var nowpage = 0,
-            num = 0;
+            num = <?=$Image->count(['sh'=>1]);?>;
 
           function pp(x) {
             var s, t;
             if (x == 1 && nowpage - 1 >= 0) {
               nowpage--;
             }
-            if (x == 2 && (nowpage + 1) * 3 <= num * 1 + 3) {
+            if (x == 2 && (nowpage + 1)  <= num - 3) {
               nowpage++;
             }
             $(".im").hide()
